@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+.page_title {
+    font-family: "Roboto", sans-serif;
+    font-size: 26px;
+}
+
+thead.MuiTableHead-root {
+    background-color: #2196F3;
+}
+
+thead.MuiTableHead-root th {
+    color: white;
+}

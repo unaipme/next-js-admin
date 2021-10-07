@@ -1,0 +1,40 @@
+.layout {
+    padding: 10px;
+}
+
+.layout_page_column {
+    padding: 20px;
+}
+
+.layout_content_column {
+}
+
+.page_entry {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: content-box;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.page_entry svg {
+    padding: 2px;
+    margin-right: 10px;
+}
+
+.page_entry a {
+    text-decoration: none;
+}
+
+.page_entry a:visited {
+    color: black;
+}
+
+.page_entry:hover {
+    background-color: #efefef;
+    cursor: pointer;
+    font-weight: bold;
+}

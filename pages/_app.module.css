@@ -1,0 +1,14 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout_header {
+    color: red;
+    background-color: #2196F3;
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    padding: 16px;
+    color: white;
+    box-shadow: 0 3px 5px #666;
+}
