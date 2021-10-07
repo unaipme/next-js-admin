@@ -5,15 +5,12 @@ const Languages = ({ data }) => {
     const fields = ["id", "name", "last_update"];
     const entity = "languages";
     return (
-        <>
-            <h2 className="page_title">Languages</h2>
-            <DataTable data={data} fields={fields} entity={entity} />
-        </>
+        <DataTable data={data} fields={fields} entity={entity} />
     )
 }
 
 const getServerSideProps = async (context) => {
-    const { data } = await axios.get("http://127.0.0.1:8000/languages");
+    const { data } = await axios.get(`http://${process.env.BACKEND_URL}/languages`);
     return {
         props: { data }
     }

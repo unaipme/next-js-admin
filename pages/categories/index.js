@@ -4,15 +4,12 @@ import DataTable from "../../components/datatable";
 const Categories = ({ data }) => {
     const fields = ["name"];
     return (
-        <>
-            <h2 className="page_title">Categories</h2> 
-            <DataTable data={data} fields={fields} entity="categories" />
-        </>
+        <DataTable data={data} fields={fields} entity="categories" />
     )
 }
 
 const getServerSideProps = async (context) => {
-    const { data } = await axios.get("http://127.0.0.1:8000/categories");
+    const { data } = await axios.get(`http://${process.env.BACKEND_URL}/categories`);
     return {
         props: { data }
     }

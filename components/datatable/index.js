@@ -12,6 +12,7 @@ const DataTable = ({ entity, fields, data }) => {
 
     return (
         <>
+            <h2 className="page_title">List of {entity}</h2>
             <TableContainer component={Paper}>
                 <Table>
                     <colgroup>

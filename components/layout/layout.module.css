@@ -1,5 +1,6 @@
 .layout {
     padding: 10px;
+    height: 100%;
 }
 
 .layout_page_column {
@@ -7,6 +8,8 @@
 }
 
 .layout_content_column {
+    /*overflow-y: auto;
+    max-height: 100%;*/
 }
 
 .page_entry {

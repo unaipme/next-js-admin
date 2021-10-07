@@ -9,7 +9,7 @@ const App = ({ Component, pageProps }) => {
             <div className={styles.layout_header}>
                 This could be the header
             </div>
-            <div>
+            <div style={{ height: "100%" /* , overflow: "hidden" */ }}>
                 <Layout>
                     <Component {...pageProps} />
                 </Layout>
@@ -19,3 +19,21 @@ const App = ({ Component, pageProps }) => {
 };
 
 export default App;
+
+/*
+const generate = (fields, entity) => {
+    return {
+        component: ({ data }) => (
+            <>
+                <h2 className="page_title">Languages</h2>
+                <DataTable data={data} fields={fields} entity={entity} />
+            </>
+        ),
+        getServerSideProps: async (context) => {
+            const { data } = await axios.get(`http://${process.env.BACKEND_URL}/${entity}`);
+            return {
+                props: { data }
+            }
+        }
+    }
+}; */

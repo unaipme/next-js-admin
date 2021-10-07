@@ -10,7 +10,7 @@ const FilmEdit = ({ data }) => {
 };
 
 const getServerSideProps = async ({ params }) => {
-    const { data } = await axios.get(`http://localhost:8000/films/${params.id}`);
+    const { data } = await axios.get(`http://${process.env.BACKEND_URL}/films/${params.id}`);
     return {
         props: { data }
     };

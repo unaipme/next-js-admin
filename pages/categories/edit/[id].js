@@ -11,7 +11,7 @@ const CategoryEdit = ({ data }) => {
 };
 
 const getServerSideProps = async ({ params }) => {
-    const { data } = await axios.get(`http://localhost:8000/categories/${params.id}`);
+    const { data } = await axios.get(`http://${process.env.BACKEND_URL}/categories/${params.id}`);
     return {
         props: { data }
     };

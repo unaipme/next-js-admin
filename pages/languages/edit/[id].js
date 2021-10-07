@@ -2,16 +2,16 @@ import axios from "axios";
 
 import Edit from "../../../components/edit";
 
-const CategoryEdit = ({ data }) => {
-    const fields = ["name"];
-    const entity = "categories";
+const LanguageEdit = ({ data }) => {
+    const fields = ["id", "name", "last_update"];
+    const entity = "languages";
     return (
         <Edit data={data} fields={fields} entity={entity} />
     )
 };
 
 const getServerSideProps = async ({ params }) => {
-    const { data } = await axios.get(`http://localhost:8000/languages/${params.id}`);
+    const { data } = await axios.get(`http://${process.env.BACKEND_URL}/languages/${params.id}`);
     return {
         props: { data }
     };
@@ -19,4 +19,4 @@ const getServerSideProps = async ({ params }) => {
 
 export { getServerSideProps };
 
-export default CategoryEdit;
+export default LanguageEdit;
