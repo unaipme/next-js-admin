@@ -6,7 +6,7 @@ const Films = ({ data }) => {
     return (
         <>
             <h2 className="page_title">Films</h2>
-            <DataTable data={data} fields={fields} />
+            <DataTable data={data} fields={fields} entity={"films"} />
         </>
     )
 }

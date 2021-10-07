@@ -6,7 +6,7 @@ const Categories = ({ data }) => {
     return (
         <>
             <h2 className="page_title">Categories</h2> 
-            <DataTable data={data} fields={fields} />
+            <DataTable data={data} fields={fields} entity="categories" />
         </>
     )
 }

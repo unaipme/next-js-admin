@@ -1,19 +1,31 @@
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from "@mui/material";
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, IconButton } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-const DataTable = ({ fields, data }) => {
+import EditIcon from '@mui/icons-material/Edit';
+
+const DataTable = ({ entity, fields, data }) => {
     const [ page, setPage ] = useState(0);
     const [ rowsPerPage, setRowsPerPage ] = useState(5);
+
+    const router = useRouter();
 
     return (
         <>
             <TableContainer component={Paper}>
                 <Table>
+                    <colgroup>
+                        {fields.map((_, index) => (
+                            <col key={index} style={{}} />
+                        ))}
+                        <col style={{ width: "5%" }} />
+                    </colgroup>
                     <TableHead>
                         <TableRow>
                             {fields.map((name, index) => (
                                 <TableCell key={index} align={index === 0 ? "left" : "right"}>{name}</TableCell>
                             ))}
+                            <TableCell>Edit</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -25,6 +37,11 @@ const DataTable = ({ fields, data }) => {
                                         {row[name]}
                                     </TableCell>
                                 ))}
+                                <TableCell>
+                                    <IconButton color="primary" onClick={() => router.push(`/${entity}/edit/${row.id}`)}>
+                                        <EditIcon />
+                                    </IconButton>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

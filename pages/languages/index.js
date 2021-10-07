@@ -3,10 +3,11 @@ import DataTable from "../../components/datatable";
 
 const Languages = ({ data }) => {
     const fields = ["id", "name", "last_update"];
+    const entity = "languages";
     return (
         <>
             <h2 className="page_title">Languages</h2>
-            <DataTable data={data} fields={fields} />
+            <DataTable data={data} fields={fields} entity={entity} />
         </>
     )
 }
