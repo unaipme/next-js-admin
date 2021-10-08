@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import Edit from "../../../../components/edit";
+import Edit from "../../../components/edit";
 
 const fields = {
     "languages": ["id", "name", "last_update"],
@@ -8,27 +8,22 @@ const fields = {
     "categories": ["name"]
 }
 
-const LanguageEdit = ({ entity, data }) => {
+const EntityEdit = ({ entity, data }) => {
     return (
         <Edit data={data} fields={fields[entity]} entity={entity} />
     )
 };
 
-const getStaticProps = async (props) => {
-    const { params: { entity, id } } = props;
+const getServerSideProps = async (context) => {
+    const { entity, id } = context.query;
     const { data } = await axios.get(`http://${process.env.BACKEND_URL}/${entity}/${id}`);
     return {
-        props: { entity, data }
+        props: { entity, id, data }
     };
 }
 
-const getStaticPaths = async (props) => {
-    return {
-        paths: [],
-        fallback: "blocking"
-    }
-}
+// export { getStaticProps, getStaticPaths };
 
-export { getStaticProps, getStaticPaths };
+export { getServerSideProps };
 
-export default LanguageEdit;
+export default EntityEdit;

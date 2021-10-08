@@ -1,5 +1,5 @@
 import axios from "axios";
-import DataTable from "../../../components/datatable";
+import DataTable from "../../components/datatable";
 
 const fields = {
     "languages": ["id", "name", "last_update"],
@@ -13,22 +13,14 @@ const EntityList = ({ entity, data }) => {
     )
 };
 
-const getStaticProps = async ({ params: { entity } }) => {
-    console.log("getStaticProps");
+const getServerSideProps = async (context) => {
+    const { entity } = context.query;
     const { data } = await axios.get(`http://${process.env.BACKEND_URL}/${entity}`);
     return {
         props: { entity, data }
     };
 }
 
-const getStaticPaths = async () => {
-    return {
-        // paths: Object.keys(fields).map(entity => ({ params: { entity } })),
-        paths: [],
-        fallback: "blocking"
-    }
-}
-
 export default EntityList;
 
-export { getStaticPaths, getStaticProps };
+export { getServerSideProps };
