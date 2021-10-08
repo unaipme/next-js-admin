@@ -1,17 +1,16 @@
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { connect } from "react-redux";
+
+import entities from "../../public/schema";
 
 import EditIcon from '@mui/icons-material/Edit';
 
-const mapStateToProps = ({ main: { fields } }, { entity }) => ({
-    fields: fields[entity]
-});
-
-const DataTable = ({ entity, fields, data }) => {
+const DataTable = ({ entity, data }) => {
     const [ page, setPage ] = useState(0);
     const [ rowsPerPage, setRowsPerPage ] = useState(5);
+
+    const { fields } = entities[entity];
 
     const router = useRouter();
 
@@ -67,4 +66,4 @@ const DataTable = ({ entity, fields, data }) => {
     );
 };
 
-export default connect(mapStateToProps)(DataTable);
+export default DataTable;
