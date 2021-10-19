@@ -9,13 +9,15 @@ export default class _Document extends Document {
     render() {
         return (
             <Html>
-                <Head />
-                <body style={{ margin: 0, height: "100vh" }}>
+                <Head>
                     <style jsx global>{`
                         #__next {
                             height: 100%;
                         }
                     `}</style>
+                    <link rel="stylesheet" href="nprogress.css" />
+                </Head>
+                <body style={{ margin: 0, height: "100vh" }}>
                     <Main />
                     <NextScript />
                 </body>
