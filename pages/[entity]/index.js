@@ -1,3 +1,5 @@
+import http from "../../services/http";
+
 import DataTable from "../../components/datatable";
 
 import entities from "../../public/schema.js";
@@ -11,7 +13,8 @@ const EntityList = ({ entity, data }) => {
 
 const getServerSideProps = async (context) => {
     const { entity } = context.query;
-    const data = await (await fetch(`http://${process.env.BACKEND_URL}/api/${entity}`)).json();
+    const client = http(entity);
+    const data = await (await client.getEntity()).json();
     return {
         props: { entity, data }
     };

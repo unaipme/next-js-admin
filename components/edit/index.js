@@ -13,8 +13,9 @@ const fieldRegroup = (arr, size = 2) => {
 
 const Edit = ({ fields, entity, data }) => {
     const router = useRouter();
+
     const formState = Object.fromEntries(
-        fields.map(field => {
+        [ ...fields, "id" ].map(field => {
             const [ value, setValue ] = useState(data[field]);
             return [field, { value, setValue }];
         })
@@ -22,7 +23,7 @@ const Edit = ({ fields, entity, data }) => {
 
     const handleSubmit = async ($event) => {
         $event.preventDefault();
-        const body = Object.fromEntries(fields.map(field => [field, formState[field].value]));
+        const body = Object.fromEntries([ ...fields, "id" ].map(field => [field, formState[field].value]));
         mutate(
             `/api/${entity}/${formState["id"].value}`,
             async () => {
@@ -46,11 +47,15 @@ const Edit = ({ fields, entity, data }) => {
                             <TextField key={name}
                                        label={name}
                                        required
+                                       disabled={name === "id"}
                                        defaultValue={formState[name].value}
                                        onChange={event => formState[name].setValue(event.target.value)} />
                         ))}
                     </div>
                 ))}
+                {!fields.includes("id") &&
+                    <input type="hidden" name="id" value={data.id} />
+                }
                 <div style={{padding: "10px"}}>
                     <Stack spacing={2} direction="row">
                         <Button variant="text" color="error" onClick={() => router.push(`/${entity}`)}>Cancel</Button>

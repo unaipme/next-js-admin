@@ -1,10 +1,12 @@
+import http from "../../../services/http";
+
 import Edit from "../../../components/edit";
 
 const fields = {
     "languages": ["id", "name", "last_update"],
     "films": ["id", "title", "description", "release_year", "language_id", "rental_duration", "rental_rate"],
     "categories": ["name"]
-}
+};
 
 const EntityEdit = ({ entity, data }) => {
     return (
@@ -14,7 +16,8 @@ const EntityEdit = ({ entity, data }) => {
 
 const getServerSideProps = async (context) => {
     const { entity, id } = context.query;
-    const data = await (await fetch(`http://${process.env.BACKEND_URL}/api/${entity}/${id}`)).json();
+    const client = http(entity);
+    const data = await (await client.getEntityInstanceById(id)).json();
     return {
         props: { entity, id, data }
     };

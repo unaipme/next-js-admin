@@ -12,11 +12,9 @@ const App = ({ Component, pageProps }) => {
 
     useEffect(() => {
         const handleStart = (url) => {
-            console.log("Starting", url)
             nProgress.start();
         }
         const handleStop = () => {
-            console.log("Ending")
             nProgress.done();
         }
 
