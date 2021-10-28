@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import Edit from "../../../components/edit";
 
 const fields = {
@@ -16,7 +14,7 @@ const EntityEdit = ({ entity, data }) => {
 
 const getServerSideProps = async (context) => {
     const { entity, id } = context.query;
-    const { data } = await axios.get(`http://${process.env.BACKEND_URL}/${entity}/${id}`);
+    const data = await (await fetch(`http://${process.env.BACKEND_URL}/api/${entity}/${id}`)).json();
     return {
         props: { entity, id, data }
     };
