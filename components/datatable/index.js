@@ -1,10 +1,12 @@
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, IconButton, TableSortLabel } from "@mui/material";
 import { visuallyHidden } from '@mui/utils';
+import { mutate } from "swr";
 import { useState } from "react";
 
 import entities from "../../public/schema";
 
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from "@mui/system";
 
 const DataTable = ({ entity, data }) => {
@@ -34,9 +36,17 @@ const DataTable = ({ entity, data }) => {
     const getComparator = () => 
         order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 
+    const handleDeletion = async (id) => {
+        mutate(
+            `/api/${entity}/${id}`,
+            await fetch(`/api/${entity}/${id}`, {
+                method: "DELETE"
+            })
+        );
+    }
+
     return (
         <>
-            <h2 className="page_title">List of {entity}</h2>
             <TableContainer component={Paper}>
                 <Table>
                     <colgroup>
@@ -65,6 +75,7 @@ const DataTable = ({ entity, data }) => {
                                 </TableCell>
                             ))}
                             <TableCell>Edit</TableCell>
+                            <TableCell>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -80,6 +91,11 @@ const DataTable = ({ entity, data }) => {
                                 <TableCell>
                                     <IconButton color="primary" onClick={() => router.push(`/${entity}/edit/${row.id}`)}>
                                         <EditIcon />
+                                    </IconButton>
+                                </TableCell>
+                                <TableCell>
+                                    <IconButton color="primary" onClick={() => handleDeletion(row.id)}>
+                                        <DeleteIcon />
                                     </IconButton>
                                 </TableCell>
                             </TableRow>

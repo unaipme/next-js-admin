@@ -1,13 +1,28 @@
 import http from "../../services/http";
 
+import AddIcon from '@mui/icons-material/Add';
+import Button from "@mui/material/Button";
 import DataTable from "../../components/datatable";
+import { useRouter } from "next/router";
 
 import entities from "../../public/schema.js";
+import styles from "./view.module.css";
 
 const EntityList = ({ entity, data }) => {
     const { fields } = entities[entity];
+    const router = useRouter();
     return (
-        <DataTable data={data} entity={entity} fields={fields} />
+        <>
+            <div className={styles.title_container}>
+                <div className={styles.page_title}>List of {entity}</div>
+                <div>
+                    <Button variant="text"
+                            startIcon={ <AddIcon /> }
+                            onClick={() => router.push(`/${entity}/create`)}>Create</Button>
+                </div>
+            </div>
+            <DataTable data={data} entity={entity} fields={fields} />
+        </>
     )
 };
 

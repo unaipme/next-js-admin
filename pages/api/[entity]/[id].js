@@ -7,10 +7,11 @@ export default function handler(req, res) {
         client.updateEntityInstanceById(id, body)
             .then(() => res.status(200))
             .catch(() => res.status(500));
-    } else if (method === "POST") {
-        res.status(501);
+    } else if (method === "DELETE") {
+        client.deleteEntityInstanceById(id)
+            .then(() => res.status(204))
+            .catch(() => res.status(500));
     } else {
         res.status(405);
     }
-    res.status(200).json({ name: "John Doe" });
 }

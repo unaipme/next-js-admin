@@ -1,0 +1,11 @@
+.title_container {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page_title {
+    font-family: "Roboto", sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+}

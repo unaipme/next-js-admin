@@ -8,6 +8,10 @@ const http = (entity) => {
         getEntityInstanceById: (id) => fetch(`${base}/${entity}/${id}`),
         updateEntityInstanceById: (id, body) => fetch(`${base}/${entity}/${id}`, {
             method: "PUT", body
+        }),
+        deleteEntityInstanceById: (id) => fetch(`${base}/${entity}/${id}`, { method: "DELETE" }),
+        createEntityInstance: (body) => fetch(`${base}/${entity}`, {
+            method: "POST", body
         })
     }
 };
