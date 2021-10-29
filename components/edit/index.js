@@ -23,16 +23,11 @@ const Edit = ({ fields, entity, data }) => {
 
     const handleSubmit = async ($event) => {
         $event.preventDefault();
-        const body = Object.fromEntries([ ...fields, "id" ].map(field => [field, formState[field].value]));
-        mutate(
-            `/api/${entity}/${formState["id"].value}`,
-            async () => {
-                await fetch(`/api/${entity}/${formState["id"].value}`, {
-                    method: "PUT", body: JSON.stringify(body)
-                });
-                router.push(`/${entity}`);
-            }
-        );
+        const body = Object.fromEntries(fields.map(field => [field, formState[field].value]));
+        fetch(`/api/${entity}/${formState["id"].value}`, {
+            method: "PUT", body: JSON.stringify(body)
+        });
+        router.push(`/${entity}`);
     }
 
     return (

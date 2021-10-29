@@ -1,16 +1,10 @@
 import http from "../../../services/http";
-
+import entities from "../../../public/schema";
 import Edit from "../../../components/edit";
-
-const fields = {
-    "languages": ["id", "name", "last_update"],
-    "films": ["id", "title", "description", "release_year", "language_id", "rental_duration", "rental_rate"],
-    "categories": ["name"]
-};
 
 const EntityEdit = ({ entity, data }) => {
     return (
-        <Edit data={data} fields={fields[entity]} entity={entity} />
+        <Edit data={data} fields={entities[entity].fields} entity={entity} />
     )
 };
 

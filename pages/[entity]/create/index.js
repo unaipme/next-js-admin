@@ -1,14 +1,11 @@
 import Create from "../../../components/create";
 
-const fields = {
-    "languages": ["id", "name", "last_update"],
-    "films": ["id", "title", "description", "release_year", "language_id", "rental_duration", "rental_rate"],
-    "categories": ["name"]
-};
+import entities from "../../../public/schema";
 
 const EntityCreate = ({ entity }) => {
+    const fields = entities[entity].fields;
     return (
-        <Create fields={fields[entity]} entity={entity} />
+        <Create fields={fields} entity={entity} />
     )
 };
 

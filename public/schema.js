@@ -3,15 +3,15 @@ import LanguageIcon from '@mui/icons-material/Language';
 import MovieIcon from '@mui/icons-material/Movie';
 
 const entities = {
-    languages: {
+    language: {
         fields: ["id", "name", "last_update"],
         Icon: LanguageIcon
     },
-    films: {
+    film: {
         fields: ["id", "title", "description", "release_year", "language_id", "rental_duration", "rental_rate"],
         Icon: MovieIcon
     },
-    categories: {
+    category: {
         fields: ["name"],
         Icon: CategoryIcon
     }

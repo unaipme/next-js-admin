@@ -4,6 +4,7 @@ import entities from "../../public/schema";
 import Link from "next/link";
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import pluralize from "pluralize";
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
@@ -27,7 +28,7 @@ const Layout = ({ children }) => {
                 <PageEntry url="/" name="Dashboard" Icon={DashboardIcon} />
                 <Divider />
                 {Object.entries(entities).map(([name, { Icon }], index) =>
-                    <PageEntry key={index} url={`/${name}`} name={name} Icon={Icon} />
+                    <PageEntry key={index} url={`/${name}`} name={pluralize(name)} Icon={Icon} />
                 )}
             </Grid>
             <Grid item xl={9} className={styles.layout_content_column}>
