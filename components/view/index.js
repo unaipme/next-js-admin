@@ -9,7 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from "@mui/system";
 
-const DataTable = ({ entity, data }) => {
+const View = ({ entity, data }) => {
     const [ page, setPage ] = useState(0);
     const [ rowsPerPage, setRowsPerPage ] = useState(5);
 
@@ -79,8 +79,8 @@ const DataTable = ({ entity, data }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .sort(getComparator(order, orderBy))
+                        {data.sort(getComparator(order, orderBy))
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map(row => (
                             <TableRow key={row.id}>
                                 {fields.map((name, index) => (
@@ -117,4 +117,4 @@ const DataTable = ({ entity, data }) => {
     );
 };
 
-export default DataTable;
+export default View;

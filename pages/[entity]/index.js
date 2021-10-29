@@ -2,7 +2,7 @@ import http from "../../services/http";
 
 import AddIcon from '@mui/icons-material/Add';
 import Button from "@mui/material/Button";
-import DataTable from "../../components/datatable";
+import View from "../../components/view";
 import { useRouter } from "next/router";
 
 import entities from "../../public/schema.js";
@@ -21,7 +21,7 @@ const EntityList = ({ entity, data }) => {
                             onClick={() => router.push(`/${entity}/create`)}>Create</Button>
                 </div>
             </div>
-            <DataTable data={data} entity={entity} fields={fields} />
+            <View data={data} entity={entity} fields={fields} />
         </>
     )
 };
