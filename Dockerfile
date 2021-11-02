@@ -6,6 +6,7 @@ ADD ./package* ./
 ADD ./components ./components
 ADD ./pages ./pages
 ADD ./public ./public
+ADD ./services ./services
 
 RUN npm install && npm run build
 
